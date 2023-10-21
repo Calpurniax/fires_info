@@ -1,17 +1,16 @@
-import { useState } from 'react';
-import { callToApi } from '../../services/api';
+import {useState} from 'react'
+import { CallToApi } from '../../services/api';
 import { useQuery } from '@tanstack/react-query';
 import Table from './Table';
 import Filters from './Filters';
 
 const Container = () => {
-  const [filters, setFilters] = useState({
-    region: 'all',
-    cause: 'all',
-    situation: 'all',
-    max_level: 'all',
-  });
-  
+    const [filters, setFilters] = useState({
+      region: 'all',
+      cause: 'all',
+      situation: 'all',
+      max_level: 'all',
+    }) 
 
   //read the data fetched and create an array with the causes
   const createCauses = (causesRaw) => {
@@ -24,13 +23,12 @@ const Container = () => {
     return dataClean;
   };
 
-  //create a query to fetch the initial data
-  const { isPending, isError, isSuccess, data, error } = useQuery({
+  //create a query to fetch the data
+  const { isPending, isError, isSuccess, data, error } = useQuery({   
     queryKey: ['fires', filters],
-    queryFn: callToApi,
+    queryFn: CallToApi,
     refetchInterval:1000*60*5
-  });
- 
+  }); 
 
   if (isPending) return <span>Cargando datos...</span>;
 

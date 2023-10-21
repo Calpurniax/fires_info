@@ -7,8 +7,7 @@ const SelectInput =({array})=>{
                     <option key={each.index}value={each}>{each}</option>
                 )
             })
-        }
-       
+        }      
 }
 
     return renderOptions()
