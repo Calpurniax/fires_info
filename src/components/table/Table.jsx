@@ -1,4 +1,5 @@
 const Table = ({ data }) => {
+  
   const renderData = () => {
     if (data) {
       return data.map((each) => (
