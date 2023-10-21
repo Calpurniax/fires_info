@@ -15,7 +15,7 @@ const Filters =({causes, handleFilters, filters})=>{
             <h2>Filtros</h2>
             <label htmlFor="region">Provincia
             <select name="region" id="region" value={filters.region} onChange={handleChange}>
-                <option value={'all'}>Todas</option>
+                <option value='all'>Todas</option>
                 <SelectInput array={regions}/>                
             </select>
             </label>
