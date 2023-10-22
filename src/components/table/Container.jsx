@@ -13,8 +13,7 @@ const Container = () => {
     }) 
 
   //read the data fetched and create an array with the causes
-  const createCauses = (causesRaw) => {
-    console.log(data)
+  const createCauses = (causesRaw) => {    
     data.map((each) => {
       causesRaw.push(each.causa_probable);
     });
@@ -27,8 +26,7 @@ const Container = () => {
   //create a query to fetch the data
   const { isPending, isError, isSuccess, data, error } = useQuery({   
     queryKey: ['fires',{filters} ],
-    queryFn:() => CallToApi(filters),
-    //enabled:!!filters,
+    queryFn:() => CallToApi(filters),   
     refetchInterval:1000*60*5
   }); 
 
