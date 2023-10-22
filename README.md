@@ -18,6 +18,7 @@ Utilizando estos datos presentes en la API se han creado varios filtros, por pro
 ├── .gitignore
 ├── .eslintrc.cjs
 ├── node_modules
+├── docs
 ├── public
 ├── src
     ├── assets
