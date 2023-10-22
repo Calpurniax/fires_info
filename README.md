@@ -40,8 +40,9 @@ Utilizando estos datos presentes en la API se han creado varios filtros, por pro
    
 ```
 
-los componentes de la tabla donde se renderizan los datos están dentro de "components/table"
-La llamada a la API se encuentra dentro de la carpeta "services"
+los componentes de la tabla donde se renderizan los datos están dentro de "components/table".
+
+La llamada a la API se encuentra dentro de la carpeta "services".
 
 ## Retos
 
