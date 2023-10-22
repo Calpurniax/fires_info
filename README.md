@@ -9,8 +9,39 @@ Utilizando estos datos presentes en la API se han creado varios filtros, por pro
 
 ## Estructura
 
+```bash
+├── vite.config.js
+├── package.json
+├── package-lock.json
+├── index.html
+├── README.md
+├── .gitignore
+├── -eslintrc.cjs
+├── node_modules
+├── public
+├── src
+    ├── assets
+    │   └── react.svg    
+    ├── components
+        ├── table
+            ├── Container.jsx
+            ├── Filters.jsx
+            ├── SelectInput.jsx
+            ├── Table.jsx
+        ├── Header.jsx   
+    ├── pages
+          └── landing.jsx
+    ├── services
+          └── api.js   
+    ├── App.css
+    ├── App.jsx
+    ├── index.css
+    ├── main.jsx   
+   
+```
+
 los componentes de la tabla donde se renderizan los datos están dentro de "components/table"
-La llamada a la API se encuentra dentro de la carpeta "api"
+La llamada a la API se encuentra dentro de la carpeta "services"
 
 ## Retos
 
