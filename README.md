@@ -16,7 +16,7 @@ Utilizando estos datos presentes en la API se han creado varios filtros, por pro
 ├── index.html
 ├── README.md
 ├── .gitignore
-├── -eslintrc.cjs
+├── .eslintrc.cjs
 ├── node_modules
 ├── public
 ├── src
