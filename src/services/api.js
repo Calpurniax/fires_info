@@ -5,9 +5,11 @@ const twoYearsAgo = (thisYear - 2)
 
 const baseUrl =`https://analisis.datosabiertos.jcyl.es//api/explore/v2.1/catalog/datasets/incendios-forestales/records`
 
-export const CallToApi = async () =>{    
-    const searchParams = new URLSearchParams()
-    //const filters = obj.queryKey[1]
+export const CallToApi = async ({query, filters}) =>{    
+    const searchParams = new URLSearchParams()   
+    console.log(query)
+    //const filters = obj.queryKey.variables.filters
+    if(filters)console.log(filters)
     searchParams.append("order_by", "fecha_inicio desc")    
     searchParams.append("limit", 100)
     searchParams.append("offset", 0)
@@ -15,12 +17,26 @@ export const CallToApi = async () =>{
     searchParams.append("include_links", false)
     searchParams.append("include_app_metas", "false")
     searchParams.append("exclude", "provincia: ORENSE CANTABRIA")
-    searchParams.append("where", `fecha_inicio IN [date'${twoYearsAgo}'..date'${thisYear}']`)   
+    searchParams.append("where", `fecha_inicio IN [date'${twoYearsAgo}'..date'${thisYear}']`)  
+    if(filters){
+        if(filters.region != 'all'){
+            searchParams.append("where", `provincia:${filters.region}`)
+        } 
+        if(filters.situation != 'all'){
+            searchParams.append("where",`situacion_actual:${filters.situation}`)
+        }
+        if(filters.cause != 'all'){
+            searchParams.append("where",`situacion_actual:${filters.cause}`)
+        }
+        if(filters.max_level != 'all'){
+            searchParams.append("where",`situacion_actual:${filters.max_level}`)
+        }    
+    }
     
     const url =baseUrl +'?'+ searchParams.toString()
     try{        
         const response =await axios.get(url)
-        return response
+        return response.data.results
     } catch(error){
         console.log(error)
     }
