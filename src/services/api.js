@@ -33,7 +33,8 @@ export const CallToApi = async (filters) =>{
     const url =baseUrl +'?'+ searchParams.toString()
     try{        
         const response =await axios.get(url)
-        return response.data.results
+        console.log(response)
+        return response.data
     } catch(error){
         console.log(error)
     }
