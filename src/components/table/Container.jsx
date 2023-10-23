@@ -12,6 +12,7 @@ const Container = () => {
     situation: 'all',
     max_level: 'all',
   });
+  const [page, setPage] = useState(1)
 
   //read the data fetched and create an array with the causes
   const createCauses = (causesRaw) => {
@@ -36,8 +37,14 @@ const Container = () => {
   if (isError) {
     return <span>Error:{error.message}</span>;
   }
+  
 
   //handle functions
+  const handlePages =(id, value, numberOfPages)=>{
+    if(id==='first') setPage(1)
+    else if(id==='last') setPage(numberOfPages)
+    else setPage(parseInt(value))
+  }
   const handleFilters = (id, value) => {
     setFilters({ ...filters, [id]: value });
   };
@@ -58,7 +65,7 @@ const Container = () => {
 
   return (
     <>
-      <Nav data={data}/>
+      <Nav data={data} handlePages={handlePages}/>
       <section>
         {renderFilters()}
         <Table data={data.results} />
