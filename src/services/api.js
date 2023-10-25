@@ -9,7 +9,7 @@ const baseUrl =`https://analisis.datosabiertos.jcyl.es//api/explore/v2.1/catalog
 export const CallToApi = async ({filters, resultsPerPage}) =>{  
     
     const searchParams = new URLSearchParams() 
-    const offsetPage = filters.offset 
+    const offsetPage = filters.offset     
 
     searchParams.append("order_by", "fecha_inicio desc")    
     searchParams.append("limit", resultsPerPage)

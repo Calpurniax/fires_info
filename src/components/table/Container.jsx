@@ -7,12 +7,8 @@ import Nav from '../Nav'
 
 const Container = () => {
   const [page, setPage] = useState(1)
-  const resultsPerPage = 30
-  var results= 9999
-  const lastIndexInApi = results -resultsPerPage
-  const numberOfPages = Math.floor(lastIndexInApi/resultsPerPage)  
-  const arrayPages =Array.from({length: numberOfPages}, (_, i)=>i+1)
-
+  const resultsPerPage = 30 
+  
   const [filters, setFilters] = useState({
     region: 'all',
     cause: 'all',
@@ -56,9 +52,9 @@ const Container = () => {
   
 
   //handle functions
-  const handlePages =(id, value)=>{   
+  const handlePages =(id, value, lastPage)=>{   
     if(id==='first') setPage(1)
-    else if(id==='last') setPage(numberOfPages)
+    else if(id==='last') setPage(lastPage)
     else setPage(parseInt(value))
   }
   
@@ -84,7 +80,7 @@ const Container = () => {
 
   return (
     <>
-      <Nav arrayPages={arrayPages} handlePages={handlePages} page={page}/>
+      <Nav resultsPerPage={resultsPerPage} handlePages={handlePages} page={page} data={data}/>
       <section>
         {renderFilters()}
         {data.results.length>0?<Table data={data.results} />:
