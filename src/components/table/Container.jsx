@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { CallToApi } from '../../services/api';
 import { useQuery } from '@tanstack/react-query';
 import Table from './Table';
@@ -6,13 +6,28 @@ import Filters from './Filters';
 import Nav from '../Nav'
 
 const Container = () => {
+  const [page, setPage] = useState(1)
+  const resultsPerPage = 30
+  var results= 9999
+  const lastIndexInApi = results -resultsPerPage
+  const numberOfPages = Math.floor(lastIndexInApi/resultsPerPage)  
+  const arrayPages =Array.from({length: numberOfPages}, (_, i)=>i+1)
+
   const [filters, setFilters] = useState({
     region: 'all',
     cause: 'all',
     situation: 'all',
-    max_level: 'all',
+    max_level: 'all',    
+    offset:0,    
   });
-  const [page, setPage] = useState(1)
+  const maxResultsFromApi =()=>{
+    if(data.total_count<9999){
+      return data.total_count
+    }else return 9999
+  }
+  useEffect(()=>{
+    setFilters({...filters, offset:(page-1)*resultsPerPage})
+  },[page])
 
   //read the data fetched and create an array with the causes
   const createCauses = (causesRaw) => {
@@ -28,11 +43,12 @@ const Container = () => {
   //create a query to fetch the data
   const { isPending, isError, isSuccess, data, error } = useQuery({
     queryKey: ['fires', { filters }],
-    queryFn: () => CallToApi(filters),
+    queryFn: () => CallToApi({filters, resultsPerPage}),
     refetchInterval: 1000 * 60 * 5,
   });
 
   if (isPending) return <span>Cargando datos...</span>;
+  
 
   if (isError) {
     return <span>Error:{error.message}</span>;
@@ -40,11 +56,12 @@ const Container = () => {
   
 
   //handle functions
-  const handlePages =(id, value, numberOfPages)=>{
+  const handlePages =(id, value)=>{   
     if(id==='first') setPage(1)
     else if(id==='last') setPage(numberOfPages)
     else setPage(parseInt(value))
   }
+  
   const handleFilters = (id, value) => {
     setFilters({ ...filters, [id]: value });
   };
@@ -53,6 +70,8 @@ const Container = () => {
     const causesRaw = [];
     if (isSuccess) {
       const causes = createCauses(causesRaw);
+      const results= maxResultsFromApi()
+      console.log(results)
       return (
         <Filters
           causes={causes}
@@ -65,10 +84,12 @@ const Container = () => {
 
   return (
     <>
-      <Nav data={data} handlePages={handlePages}/>
+      <Nav arrayPages={arrayPages} handlePages={handlePages} page={page}/>
       <section>
         {renderFilters()}
-        <Table data={data.results} />
+        {data.results.length>0?<Table data={data.results} />:
+        <span>No hay datos para mostrar</span>}
+        
       </section>
     </>
   );

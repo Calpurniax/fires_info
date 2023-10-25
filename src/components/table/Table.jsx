@@ -1,7 +1,8 @@
 const Table = ({ data }) => {
   
   const renderData = () => {
-    if (data) {
+  
+    if (data) {      
       return data.map((each) => (
         <tr key={each.index}>
           <td>
@@ -26,7 +27,7 @@ const Table = ({ data }) => {
           <td>{each.tipo_y_has_de_superficie_afectada}</td>
           <td>{each.termino_municipal}{each.codigo_municipio_ine}</td>         
         </tr>
-      ));
+      ));      
     }
   };
 

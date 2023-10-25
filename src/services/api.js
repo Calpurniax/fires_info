@@ -3,20 +3,24 @@ import axios from "axios"
 const thisYear = new Date().getFullYear()
 const twoYearsAgo = (thisYear - 2)
 
+
 const baseUrl =`https://analisis.datosabiertos.jcyl.es//api/explore/v2.1/catalog/datasets/incendios-forestales/records`
 
-export const CallToApi = async (filters) =>{    
-    const searchParams = new URLSearchParams()        
+export const CallToApi = async ({filters, resultsPerPage}) =>{  
     
+    const searchParams = new URLSearchParams() 
+    const offsetPage = filters.offset 
+
     searchParams.append("order_by", "fecha_inicio desc")    
-    searchParams.append("limit", 100)
-    searchParams.append("offset", 0)
+    searchParams.append("limit", resultsPerPage)
+    searchParams.append("offset", offsetPage)
     searchParams.append("timezone", "UTC")
     searchParams.append("include_links", false)
     searchParams.append("include_app_metas", "false")
     searchParams.append("exclude", "provincia: ORENSE CANTABRIA")
     searchParams.append("where", `fecha_inicio IN [date'${twoYearsAgo}'..date'${thisYear}']`)  
     if(filters){
+       
         if(filters.cause != 'all'){
             searchParams.append("where",`causa_probable:'${filters.cause}'`)
         }

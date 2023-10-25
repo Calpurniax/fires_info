@@ -1,11 +1,10 @@
 import SelectInput from "./table/SelectInput";
 
-const Nav = ({data, handlePages}) => {
-  const numberOfPages = Math.ceil(data.total_count/10)        
-  const arrayPages = Array.from({length:numberOfPages},(_, i)=> i+1)
+const Nav = ({arrayPages, handlePages, page}) => {       
+  
   
   const handleChange=(ev)=>{   
-    handlePages(ev.target.id, ev.target.value,numberOfPages)
+    handlePages(ev.target.id, ev.target.value)
   }
     const renderPages =()=>{               
         return <SelectInput array={arrayPages}/>
@@ -14,7 +13,7 @@ const Nav = ({data, handlePages}) => {
     <nav >
       <button id="first" onClick={handleChange}>Primera página</button>
       <label htmlFor='page' onChange={handleChange}>
-        Ir a la página: <select name='page' id='page'>{renderPages()}</select>
+        Ir a la página: <select name='page' id='page' value={page}>{renderPages()}</select>
       </label>
       <button id="last" onClick={handleChange}>última página</button>
     </nav>
