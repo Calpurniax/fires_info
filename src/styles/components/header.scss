@@ -1,20 +1,21 @@
-.header{
-   background-image: url("../assets/header.jpg");
+.header{    
+   background-image: url("../../assets/header.jpg");
    background-size: cover;
    background-position: bottom center;
    background-repeat: no-repeat;  
    height: 20vh;
+   margin-bottom: 1rem;
+   box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
     &__container{
         background-color: rgba(100, 100, 100, 0.574);
         color:rgb(255, 255, 255);
         height: 20vh;
         display: flex;
         justify-content: center;
-        align-items: center;      
+        align-items: center;              
         &__title{
-        
-            
+            margin:0 1rem 0 1rem;
+            font-size: 2.5rem;            
         }
-    }
-    
+    }    
 }

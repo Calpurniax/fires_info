@@ -1,0 +1,25 @@
+@import "../core/mixin.scss";
+.nav{
+    margin:0 0.5rem 1rem 0.5rem;
+    display: flex;
+    justify-content: space-between; 
+    //margin-bottom: 1rem;   
+    @include desktop{
+        justify-content: center;
+        gap:2rem;
+    } 
+    &__button{
+        padding: 0.3rem;
+        appearance: none;
+        background-color:#90D491;
+        box-shadow: rgba(27, 31, 35, .1) 0 1px 0;
+        border-radius: 6px;
+        border: 1px solid rgba(27, 31, 35, .15);
+        &:hover{            
+            background-color: #CBF8A6;
+        }
+        &:active{
+            background-color: #E7FBD2;
+        }
+    }
+}

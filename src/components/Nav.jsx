@@ -1,3 +1,4 @@
+import "../styles/components/nav.scss"
 import SelectInput from "./table/SelectInput";
 
 const Nav = ({ handlePages, resultsPerPage, data, page}) => { 
@@ -15,12 +16,12 @@ const Nav = ({ handlePages, resultsPerPage, data, page}) => {
         return <SelectInput array={arrayPages}/>
     }
   return (
-    <nav >
-      <button id="first" onClick={handleChange}>Primera página</button>
+    <nav className="nav">
+      <button className="nav__button" id="first" onClick={handleChange}>Primera página</button>
       <label htmlFor='page'>
         Ir a la página: <select name='page' id='page' value={page} onChange={handleChange}>{renderPages()}</select>
       </label>
-      <button id="last" onClick={handleChange}>última página</button>
+      <button className="nav__button" id="last" onClick={handleChange}>Última página</button>
     </nav>
   );
 };
