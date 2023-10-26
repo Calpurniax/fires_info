@@ -1,0 +1,20 @@
+.header{
+   background-image: url("../assets/header.jpg");
+   background-size: cover;
+   background-position: bottom center;
+   background-repeat: no-repeat;  
+   height: 20vh;
+    &__container{
+        background-color: rgba(100, 100, 100, 0.574);
+        color:rgb(255, 255, 255);
+        height: 20vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;      
+        &__title{
+        
+            
+        }
+    }
+    
+}

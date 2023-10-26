@@ -2,6 +2,10 @@
 
 Este proyecto ha sido creado utilizando la [API de la Junta de Castilla y León](https://analisis.datosabiertos.jcyl.es/pages/home/) para poder consultar los partes realizados sobre incendios forestales
 
+## Imágenes
+Foto del header de <a href="https://unsplash.com/es/@karimsan?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Karim Sakhibgareev</a> en <a href="https://unsplash.com/es/fotos/arbol-de-hojas-verdes-durante-el-dia-AgiPiIKc9LM?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Unsplash</a>
+  
+
 ## Implementaciones
 
 El proyecto despliega en una tabla los resultados que devuelve la API sobre incendios, desde el año 2021 y en orden descendente (primero se muestran los más recientes). En la tabla se pueden ver la información sobre cada incendio (hora y fecha de inicio, estado (extinguido/activo/controlado) etc.
